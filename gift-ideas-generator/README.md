@@ -31,10 +31,9 @@
      ```
 
 3. **Get your Gemini AI API_KEY**
-    - Create in project folder .env file
-    - Visit https://aistudio.google.com/apikey
-    and click "Create API key",
-    then copy the API key to .env file like:
+    - Create in project root folder .env file
+    - Visit https://aistudio.google.com/apikey, and click "Create API key"
+    - Then copy the API key to .env file like:
     ```bash
     GEMINI_API_KEY=<your_api_key>
     ```

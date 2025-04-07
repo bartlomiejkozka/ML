@@ -28,6 +28,7 @@ class GeminiAPI:
         self.translator = GoogleTranslator(source=self.language, target="en")
 
     def formatToLanguage(self):
+        """Translate stored data to English."""
         for key, value in self.stored_data.items():
             if key == 'age' or key == 'max_budget':
                 continue
@@ -38,6 +39,7 @@ class GeminiAPI:
                 self.stored_data[key] = self.translator.translate(value)
 
     def gen_gift_ideas(self, stored_data: dict) -> str:
+        """Generate gift ideas based on user input."""
         self.stored_data = stored_data
         self.formatToLanguage()
 
@@ -61,6 +63,7 @@ class GeminiAPI:
         self.gift_ideas = response.parsed
 
     def get_gift_ideas(self) -> str:
+        """Get generated gift ideas."""
         examples = []
         for idx, idea in enumerate(self.gift_ideas):
             examples.append(
