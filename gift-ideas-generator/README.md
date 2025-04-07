@@ -35,8 +35,9 @@
     - Visit https://aistudio.google.com/apikey
     and click "Create API key",
     then copy the API key to .env file like:
+    ```bash
     GEMINI_API_KEY=<your_api_key>
-
+    ```
 ## Running the Application
 
 1. **Start the Application**  
