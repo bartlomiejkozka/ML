@@ -1,6 +1,11 @@
-%--------------------
-% Packages
-% -------------------
+% TODO:
+% - Add arritbutes cardinality hist after reduction
+% - Add arttib distribution hists and compare with normla distribution - could compute mean , std, ..
+% - Add anallysis of attrib correalation
+% - Optionall - add some geographical/hisotrical conculstion about meteo Brenna data
+
+
+
 \documentclass[10pt,a4paper]{article}
 
 \usepackage{iftex} % <-- Add this to check the compiler
@@ -81,7 +86,15 @@ Celem projektu jest wybranie odpowiedniego zestawu danych (nadającego się do w
 Dane zostały wybrane z serwisu internetowego dane.gov.pl. Ilość danych znajdujących się na tej platformie jest duża, jednak większość tych danych nie nadawała by się do dalszej pracy w pipline ML. 
 Na portalu dane.gov.pl można odnaleźć różne rodzaje danych w wielu kategoriach takich jak: edukacja, energia, gospodarka i finanse, transport i wiele innych. Dane można pobrać w formatach takich jak CSV, JSON, XML, Excel itp. Portal ten oferuje również łatwość w szybkim sprawdzeniu danych przez ich wizualizację (podgląd) na stronie portalu. Dane są również dostępne poprzez REST\_API. Dodatkowo można tam również znaleźć krótkie opisy badanych zestawów danych.
 \subsection*{Wybór danych}
-Nabyte dane pochodzą ze stacji meteorologicznej w Brennej z 2020 roku i zawierają zmienne takie jak: date – data i godzina pomiaru, ta – temperatura powietrza wyrażona w stopniach Celsjusza, rh – wilgotność względna w procentach, pr – ciśnienie atmosferyczne w hektopaskalach, wv – średnia prędkość wiatru w metrach na sekundę, wpmx – maksymalna prędkość wiatru w metrach na sekundę, wd – kierunek wiatru wyrażony w stopniach oraz rf – wystąpienie opadów deszczu.
+Nabyte dane pochodzą ze stacji meteorologicznej w Brennej z 2020 roku i zawierają zmienne takie jak: 
+\textbf{\textit{date}} – data i godzina pomiaru, 
+\textbf{\textit{ta}} (temperature) – temperatura powietrza wyrażona w stopniach Celsjusza, 
+\textbf{\textit{rh}} (relative humidity) – wilgotność względna w procentach, 
+\textbf{\textit{pr}} (pressure) – ciśnienie atmosferyczne w hektopaskalach, 
+\textbf{\textit{wv}} (wind velocity) – średnia prędkość wiatru w metrach na sekundę (m/s), 
+\textbf{\textit{wpmx}} (wind peak maximum) – maksymalna prędkość wiatru w metrach na sekundę, 
+\textbf{\textit{wd}} (wind direction) – kierunek wiatru wyrażony w stopniach oraz 
+\textbf{\textit{rf}} (rainfall) – wystąpienie opadów deszczu.
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{Image.jpg}
@@ -103,7 +116,7 @@ Dane meteorologiczne mogą być wykorzystane w uczeniu maszynowym do różnych c
 \noindent W przypadku zmiennych takich jak ta, rh, pr, wv, wpmx, wd, liczba brakujących danych wynosi 166, co stanowi niewielki procent w porównaniu do całkowitej liczby próbek. Dla zmiennej rf (opady) brakujących wartości jest 326, co również jest małym procentem w odniesieniu do całkowitej liczby danych. W związku z tym, brakujące dane są stosunkowo niewielkie i nie mają istotnego wpływu na całościową strukturę danych.
 \par
 \hspace{0.75cm}
-Biorąc pod uwagę niewielki procent brakujących danych oraz fakt, że braki są rozłożone równomiernie, można przyjąć, że brakujące wartości w danych meteorologicznych mają charakter Missing Completely at Random (MCAR). Oznacza to, że brakujące dane są losowe i nie zależą od innych zmiennych w zbiorze danych. Prawdopodobnie przyczyną braków odczytów były zakłócenia w pracy czujników lub inne techniczne problemy związane z urządzeniami pomiarowymi.
+Biorąc pod uwagę niewielki procent brakujących danych oraz fakt, że braki są rozłożone równomiernie, można przyjąć, że brakujące wartości w danych meteorologicznych mają charakter \textbf{Missing Completely at Random (MCAR)}. Oznacza to, że brakujące dane są losowe i nie zależą od innych zmiennych w zbiorze danych. Prawdopodobnie przyczyną braków odczytów były zakłócenia w pracy czujników lub inne techniczne problemy związane z urządzeniami pomiarowymi.
 \par
 \hspace{0.75cm}
 W celu przygotowania danych meteorologicznych do modelowania zastosowano różne metody uzupełniania brakujących wartości, odpowiednio do charakteru poszczególnych zmiennych. Dla zmiennych ciągłych takich jak temperatura powietrza (ta), wilgotność względna (rh), ciśnienie atmosferyczne (pr), prędkość wiatru (wv), maksymalna prędkość porywu wiatru (wpmx) oraz kierunek wiatru (wd) zdecydowano się na interpolację liniową w funkcji czasu. Metoda ta pozwala na płynne oszacowanie brakujących wartości na podstawie danych sąsiednich, co odzwierciedla naturalne zmiany tych parametrów w czasie i zapewnia spójność czasową pomiarów.
